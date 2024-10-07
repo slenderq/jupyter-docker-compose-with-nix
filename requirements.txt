@@ -3,3 +3,8 @@ jupyterlab-vim==4.1.4
 grpcio==1.66.1
 # https://pypi.org/project/jupytext/
 jupytext==1.16.4
+# geopandas
+# geodatasets
+
+
+
