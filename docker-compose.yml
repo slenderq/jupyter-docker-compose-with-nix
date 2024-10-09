@@ -10,3 +10,11 @@ services:
       - 8888:8888
     container_name: jupyter_notebook
     command: "start-notebook.sh --NotebookApp.token="
+    privileged: true
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
