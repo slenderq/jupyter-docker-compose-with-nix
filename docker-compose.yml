@@ -6,6 +6,7 @@ services:
       dockerfile: ./docker/jupyter/Dockerfile
     volumes:
       - ./work:/home/jovyan/work
+      - ./dot-jupyter:/home/jovyan/.juypter # persistent settings
       - /home/justin/2024:/home/jovyan/work/2024
     ports:
       - 9999:8888
