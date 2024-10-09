@@ -6,8 +6,10 @@ services:
       dockerfile: ./docker/jupyter/Dockerfile
     volumes:
       - ./work:/home/jovyan/work
+      - ./dot-jupyter:/home/jovyan/.juypter # persistent settings
+      - /home/justin/2024:/home/jovyan/work/2024
     ports:
-      - 8888:8888
+      - 9999:8888
     container_name: jupyter_notebook
     command: "start-notebook.sh --NotebookApp.token="
     privileged: true
