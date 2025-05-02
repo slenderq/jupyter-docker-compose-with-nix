@@ -15,6 +15,14 @@ docker-compose up -d
 
 Edit the `requirements.txt` file
 
+
+## generate nix
+
+```
+nix run github:aksiksi/compose2nix -- -project=jupyter
+```
+
+
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
