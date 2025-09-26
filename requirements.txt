@@ -3,8 +3,24 @@ jupyterlab-vim==4.1.4
 grpcio==1.66.1
 # https://pypi.org/project/jupytext/
 jupytext==1.16.4
+xgboost==3.0.4
 # geopandas
 # geodatasets
+
+# LangChain Academy packages
+langgraph
+langgraph-prebuilt
+langgraph-sdk
+langgraph-checkpoint-sqlite
+langsmith
+langchain-community
+langchain-core
+langchain-openai
+notebook
+tavily-python
+wikipedia
+trustcall
+langgraph-cli[inmem]
 
 
 
