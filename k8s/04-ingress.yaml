@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: jupyter-ingress
+  namespace: jupyter
+  annotations:
+    # Optional: Add SSL/TLS annotations if you have cert-manager
+    # cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  rules:
+  - host: jupyter.local  # Change this to your desired hostname
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: jupyter-service
+            port:
+              number: 8888
+  # Optional: Uncomment for TLS
+  # tls:
+  # - hosts:
+  #   - jupyter.local
+  #   secretName: jupyter-tls

@@ -1,0 +1,70 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jupyter-notebook
+  namespace: jupyter
+  labels:
+    app: jupyter
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jupyter
+  template:
+    metadata:
+      labels:
+        app: jupyter
+    spec:
+      containers:
+      - name: jupyter
+        image: jupyter-docker-compose-with-nix:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8888
+          name: http
+        command: ["start-notebook.sh", "--NotebookApp.token="]
+        env:
+        - name: JUPYTER_ENABLE_LAB
+          value: "yes"
+        volumeMounts:
+        - name: host-2024
+          mountPath: /home/jovyan/work/2024
+        - name: host-2025
+          mountPath: /home/jovyan/work/2025
+        - name: dot-jupyter
+          mountPath: /home/jovyan/.juypter
+        - name: work
+          mountPath: /home/jovyan/work
+        resources:
+          requests:
+            memory: "1Gi"
+            cpu: "500m"
+          limits:
+            memory: "4Gi"
+            cpu: "2"
+        securityContext:
+          privileged: true
+      volumes:
+      - name: host-2024
+        hostPath:
+          path: /home/justin/2024
+          type: Directory
+      - name: host-2025
+        hostPath:
+          path: /home/justin/2025
+          type: Directory
+      - name: dot-jupyter
+        hostPath:
+          path: /home/justin/2025/jupyter-docker-compose-with-nix/dot-jupyter
+          type: Directory
+      - name: work
+        hostPath:
+          path: /home/justin/2025/jupyter-docker-compose-with-nix/work
+          type: Directory
+      nodeSelector:
+        kubernetes.io/os: linux
+      # Optional: Uncomment if you have GPU nodes
+      # tolerations:
+      # - key: nvidia.com/gpu
+      #   operator: Exists
+      #   effect: NoSchedule
