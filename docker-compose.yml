@@ -9,6 +9,7 @@ services:
       - ./dot-jupyter:/home/jovyan/.juypter # persistent settings
       - /home/justin/2024:/home/jovyan/work/2024
       - /home/justin/2025:/home/jovyan/work/2025
+      - /home/justin/2025:/home/jovyan/work/2026
     ports:
       - 9998:8888
     container_name: jupyter_notebook
